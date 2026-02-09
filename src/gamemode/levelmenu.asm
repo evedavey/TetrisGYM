@@ -120,10 +120,27 @@ levelMenuCheckStartGame:
         lda heldButtons_player1
         and #BUTTON_A
         beq @noA
+        ; Handle A button for different positions
         lda classicLevel
+        cmp #$05  ; Position 5 is level 24
+        beq @add1
+        cmp #$0B  ; Position 11 is level 39
+        beq @add99
+        ; Positions 0-4, 6-10 are levels 0-9, add 10
+        ldx classicLevel
+        lda levelValueTable,x
         clc
-        adc #$0C
-        sta classicLevel
+        adc #$0A
+        sta startLevel
+        jmp @startGame
+@add1:
+        lda #$19  ; 24 + 1 = 25
+        sta startLevel
+        jmp @startGame
+@add99:
+        lda #$8A  ; 39 + 99 = 138
+        sta startLevel
+        jmp @startGame
 @noA:
         ldx classicLevel
         lda levelValueTable,x
@@ -471,9 +488,9 @@ levelMenuRenderReady:
         lda heartsAndReady
         and #$F0
         beq @notReady
-        lda #$73
+        lda #$5B
         sta spriteYOffset
-        lda #$88
+        lda #$94
         sta spriteXOffset
         lda #$20
         sta spriteIndexInOamContentLookup

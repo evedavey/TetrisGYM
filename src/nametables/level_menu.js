@@ -38,11 +38,11 @@ drawTiles(buffer, lookup, `
 ʐa      ĄąąąąąĆ               dʂ
 ʂa      ćLEVELĈ               dʑ
 ɠa      ĉĊĊĊĊĊċ               dʂ
-ɰa    rtututututy             dʑ
-ʀa    f0f1f2f3f4h   rttty     dʂ
-ɢa    jbkbkbkbkbl   f   h     dʀ
-ɲa    f5f6f7f8f9h   vbbbn     dʃ
-ɲa    vbibibibibn             dʃ
+ɰa    rtutututututty          dʑ
+ʀa    f0f1f2f3f4f24hrttty     dʂ
+ɢa    jbkbkbkbkbkbblf   h     dʀ
+ɲa    f5f6f7f8f9f39hvbbbn     dʃ
+ɲa    vbibibibibibbn          dʃ
 ʂa                            dʃ
 ɢa                            dʑ
 ʠa rtttttttttttttttttttttttty dɲ

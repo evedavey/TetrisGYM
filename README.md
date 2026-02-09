@@ -1,4 +1,5 @@
 # TetrisGYM
+evesy's gym fork - adds level 24 (iball mode), and level 39 (for quick crunch dks practice). Hold A and these will go to level 25 ("comp iball mode") and 138 (colours) respectively. This ROM also has GOOFY = ON by default. there are no other changes from the latest GYM repo as of 09/02/2026
 
 <div align="center">
     <img src="./assets/screens/menu6.png" alt="Menuscreen">

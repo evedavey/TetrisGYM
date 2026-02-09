@@ -30,6 +30,9 @@
         lda #$A
         sta paceModifier
 
+        lda #$1
+        sta goofyFlag
+
         lda #$10
         sta dasModifier
 
