@@ -37,10 +37,10 @@ gameMode_levelMenu:
         sta dropSpeed
 @forceStartLevelToRange:
         lda classicLevel
-        cmp #$0A
+        cmp #$0C
         bcc gameMode_levelMenu_processPlayer1Navigation
         sec
-        sbc #$0A
+        sbc #$0C
         sta classicLevel
         jmp @forceStartLevelToRange
 
@@ -122,10 +122,11 @@ levelMenuCheckStartGame:
         beq @noA
         lda classicLevel
         clc
-        adc #$0A
+        adc #$0C
         sta classicLevel
 @noA:
-        lda classicLevel
+        ldx classicLevel
+        lda levelValueTable,x
         sta startLevel
 @startGame:
         ; lda startLevel
@@ -169,14 +170,14 @@ shredSeedAndContinue:
         jsr generateNextPseudorandomNumber
         lda rng_seed
         and #$0F
-        cmp #$0A
+        cmp #$0C
         bpl @chooseRandomHole_player1
 @chooseRandomHole_player2:
         ldx #rng_seed
         jsr generateNextPseudorandomNumber
         lda rng_seed
         and #$0F
-        cmp #$0A
+        cmp #$0C
         bpl @chooseRandomHole_player2
 
         jsr updateAudioWaitForNmiAndResetOamStaging
@@ -369,7 +370,7 @@ levelControlNormal:
         lda #$01
         sta soundEffectSlot1Init
         lda classicLevel
-        cmp #$9
+        cmp #$0B
         beq @toCustomLevel
         inc classicLevel
 @checkLeftPressed:
@@ -388,10 +389,10 @@ levelControlNormal:
         lda #$01
         sta soundEffectSlot1Init
         lda classicLevel
-        cmp #$05
+        cmp #$06
         bpl @toHearts
         clc
-        adc #$05
+        adc #$06
         sta classicLevel
         jmp @checkUpPressed
 
@@ -409,10 +410,10 @@ levelControlNormal:
         lda #$01
         sta soundEffectSlot1Init
         lda classicLevel
-        cmp #$05
+        cmp #$06
         bmi @checkAPressed
         sec
-        sbc #$05
+        sbc #$06
         sta classicLevel
         jmp @checkAPressed
 
@@ -470,7 +471,7 @@ levelMenuRenderReady:
         lda heartsAndReady
         and #$F0
         beq @notReady
-        lda #$4f
+        lda #$73
         sta spriteYOffset
         lda #$88
         sta spriteXOffset
@@ -480,11 +481,15 @@ levelMenuRenderReady:
 @notReady:
         rts
 
+levelValueTable:
+        .byte   $00,$01,$02,$03,$04,$18,$05,$06,$07
+        .byte   $08,$09,$27
+
 levelToSpriteYOffset:
-        .byte   $53,$53,$53,$53,$53,$63,$63,$63
-        .byte   $63,$63
+        .byte   $53,$53,$53,$53,$53,$53,$63,$63,$63
+        .byte   $63,$63,$63
 levelToSpriteXOffset:
-        .byte   $34,$44,$54,$64,$74,$34,$44,$54
-        .byte   $64,$74
+        .byte   $34,$44,$54,$64,$74,$84,$34,$44,$54
+        .byte   $64,$74,$84
 musicSelectionTable:
         .byte   $03,$04,$05,$FF,$06,$07,$08,$FF
